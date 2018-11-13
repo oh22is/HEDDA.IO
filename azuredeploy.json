@@ -188,7 +188,7 @@
                 "handlerMappings": null,
                 "documentRoot": null,
                 "scmType": "None",
-                "use32BitWorkerProcess": false,
+                "use32BitWorkerProcess": true,
                 "webSocketsEnabled": false,
                 "alwaysOn": true,
                 "javaVersion": null,
@@ -261,6 +261,19 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
             ]
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "name": "appsettings",
+            "type": "config",
+            "dependsOn": [
+              "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+            ],
+            "properties": {
+              "AppSettingKey1": "Some value",
+              "AppSettingKey2": "My second setting",
+              "AppSettingKey3": "My third setting"
+            }
         }
     ]
 }
