@@ -34,6 +34,7 @@
             "defaultValue" : "S1",
             "metadata": {
                 "description": "The SKU of App Service Plan, by defaut is standard S1"
+            }
         },
         "dbEdition": {
             "type": "string",
@@ -68,34 +69,34 @@
               "description": "HEDDA.IO ApiKey"
             }
         },
-    "location": {
-      "type": "string",
-      "defaultValue": "East US 2",
-      "allowedValues": [
-        "Central US",
-        "East US",
-        "East US 2",
-        "North Central US",
-        "South Central US",
-        "West US",
-        "Canada Central",
-        "North Europe",
-        "West Europe",
-        "East Asia",
-        "Southeast Asia",
-        "Japan East",
-        "Japan West",
-        "Brazil South",
-        "Australia East",
-        "Australia Southeast",
-        "West India",
-        "Central India",
-        "South India"
-      ],
-      "metadata": {
-        "description": "Location for all resources."
-      }
-}
+        "location": {
+            "type": "string",
+            "defaultValue": "East US 2",
+            "allowedValues": [
+                "Central US",
+                "East US",
+                "East US 2",
+                "North Central US",
+                "South Central US",
+                "West US",
+                "Canada Central",
+                "North Europe",
+                "West Europe",
+                "East Asia",
+                "Southeast Asia",
+                "Japan East",
+                "Japan West",
+                "Brazil South",
+                "Australia East",
+                "Australia Southeast",
+                "West India",
+                "Central India",
+                "South India"
+            ],
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
     },
     "variables": {},
     "resources": [
