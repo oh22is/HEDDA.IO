@@ -124,16 +124,6 @@
                         "hostType": "Repository"
                     }
                 ],
-                "appSettings": {
-                    "HEDDAIO_ApiKey" : "[parameters('heddaIoApiKey')]",
-                    "HEDDAIO_LicenseID" : "[parameters('heddaIoLicenseId')]",
-                    "HEDDAIO_LicensePassword" : "[parameters('heddaIoPassword')]"
-                },
-                "phpVersion": "Off",
-                "alwaysOn": true,
-                "publishingUsername": "[parameters('webUsername')]",
-                "publishingPassword": "[parameters('webPassword')]",
-                "connectionStrings": "[variables('connectionString')]",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
             },
             "dependsOn": [
@@ -186,10 +176,14 @@
                 "detailedErrorLoggingEnabled": false,
                 "publishingUsername": "[parameters('webUsername')]",
                 "publishingPassword": "[parameters('webPassword')]",
-                "appSettings": null,
+                "appSettings": {
+                    "HEDDAIO_ApiKey" : "[parameters('heddaIoApiKey')]",
+                    "HEDDAIO_LicenseID" : "[parameters('heddaIoLicenseId')]",
+                    "HEDDAIO_LicensePassword" : "[parameters('heddaIoPassword')]"
+                },
                 "azureStorageAccounts": {},
                 "metadata": null,
-                "connectionStrings": null,
+                "connectionStrings": "[variables('connectionString')]",
                 "machineKey": null,
                 "handlerMappings": null,
                 "documentRoot": null,
