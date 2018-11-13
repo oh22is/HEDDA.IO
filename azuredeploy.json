@@ -177,7 +177,7 @@
             "kind": "v12.0,user",
             "name": "[concat(parameters('serverName'), '/', parameters('databaseName'))]",
             "apiVersion": "2017-03-01-preview",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "edition": "[parameters('dbEdition')]",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
