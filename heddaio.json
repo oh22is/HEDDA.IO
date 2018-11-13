@@ -29,16 +29,12 @@
               "description": "Web admin user password"
             }
         },
-        "sku":{
-            "type": "string",
-            "allowedValues": [
-                "Free",
-                "Shared",
-                "Basic",
-                "Standard"
-              ],
-        "defaultValue": "Free"
-        },
+       "sku":{
+      "type": "string",
+      "defaultValue" : "S1",
+      "metadata": {
+        "description": "The SKU of App Service Plan, by defaut is standard S1"
+    },
         "dbEdition": {
             "type": "string",
             "allowedValues": [
