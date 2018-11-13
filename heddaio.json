@@ -53,12 +53,14 @@
         },
         "heddaIoLicenseId": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
               "description": "HEDDA.IO License ID"
             }
         },
         "heddaIoPassword": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
               "description": "HEDDA.IO Password"
             }
