@@ -124,7 +124,17 @@
               "hostType": "Repository"
             }
           ],
-          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+          "siteConfig":
+          {
+            "connectionStrings": [
+              {
+                "name": "SQLServerConnectionString",
+                "connectionString": "[variables('connectionString')]",
+                "type": 2
+              }
+            ]
+          }
         },
         "dependsOn": [
           "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
