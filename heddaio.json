@@ -72,18 +72,17 @@
               "description": "HEDDA.IO ApiKey"
             }
         },
-        "location": {
-          "type": "string",
-          "defaultValue": "[resourceGroup().location]",
-          "metadata": {
-            "description": "Location for all resources."
-          }
-        }
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+      }
     },
     "variables": {},
     "resources": [
         {
-            "comments": "Generalized from resource: '/subscriptions/bf1804af-b2ab-4bbf-89c1-367e661ca860/resourceGroups/max45245/providers/Microsoft.Sql/servers/max45245'.",
             "type": "Microsoft.Sql/servers",
             "kind": "v12.0",
             "name": "[parameters('serverName')]",
@@ -161,7 +160,7 @@
         },
         {
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('siteName'), '/', parameters('config_web_name'))]",
+            "name": "[concat(parameters('siteName'), '/', parameters('siteName'))]",
             "apiVersion": "2016-08-01",
             "location": "[parameters('location')]",
             "scale": null,
