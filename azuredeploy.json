@@ -99,7 +99,8 @@
         }
     },
     "variables": {
-        "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), ';Password=', parameters('sqlPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+        "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), ';Password=', parameters('sqlPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+        "appServicePlanName": "[concat('AppServicePlan-', parameters('siteName'))]"
     },
     "resources": [
         {
@@ -116,19 +117,19 @@
             "dependsOn": []
         },
         {
+            "apiVersion": "2017-08-01",
             "type": "Microsoft.Web/serverfarms",
             "kind": "app",
-            "name": "[parameters('siteName')]",
-            "apiVersion": "2016-09-01",
+            "name": "[variables('appServicePlanName')]",
             "location": "[parameters('location')]",
+            "comments": "This app service plan is used for the web app and slots.",
             "properties": {
-                "name": "[parameters('siteName')]",
-                "perSiteScaling": false,
-                "reserved": false,
-                "targetWorkerCount": 0,
-                "targetWorkerSizeId": 0
+                "publicIPAllocationMethod":"Dynamic"
             },
-            "dependsOn": []
+            "dependsOn": [],
+            "sku": {
+              "name": "[parameters('sku')]"
+            }
         },
         {
             "type": "Microsoft.Web/sites",
@@ -150,10 +151,10 @@
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]"
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
             ]
         },
         {
