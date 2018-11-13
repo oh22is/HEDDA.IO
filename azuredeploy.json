@@ -20,15 +20,6 @@
           "description": "Database admin user password"
         }
       },
-      "webUsername": {
-        "type": "string"
-      },
-      "webPassword": {
-        "type": "securestring",
-        "metadata": {
-          "description": "Web admin user password"
-        }
-      },
       "sku": {
         "type": "string",
         "defaultValue": "S1",
@@ -131,7 +122,7 @@
               {
                 "name": "SQLServerConnectionString",
                 "connectionString": "[variables('connectionString')]",
-                "type": 2
+                "type": "SQLAzure"
               }
             ]
           }
@@ -202,8 +193,8 @@
           "httpLoggingEnabled": false,
           "logsDirectorySizeLimit": 35,
           "detailedErrorLoggingEnabled": false,
-          "publishingUsername": "[parameters('webUsername')]",
-          "publishingPassword": "[parameters('webPassword')]",
+          "publishingUsername": "$[parameters('siteName')]",
+          "publishingPassword": null,
           "azureStorageAccounts": {},
           "metadata": null,
           "machineKey": null,
