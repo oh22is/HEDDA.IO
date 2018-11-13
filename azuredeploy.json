@@ -124,7 +124,15 @@
             "location": "[parameters('location')]",
             "comments": "This app service plan is used for the web app and slots.",
             "properties": {
-                "publicIPAllocationMethod":"Dynamic"
+                "publicIPAllocationMethod":"Dynamic",
+                "appSettings": {
+                    "HEDDAIO_ApiKey" : "[parameters('heddaIoApiKey')]",
+                    "HEDDAIO_LicenseID" : "[parameters('heddaIoLicenseId')]",
+                    "HEDDAIO_LicensePassword" : "[parameters('heddaIoPassword')]"
+                },
+                "publishingUsername": "[parameters('webUsername')]",
+                "publishingPassword": "[parameters('webPassword')]",
+                "connectionStrings": "[variables('connectionString')]"
             },
             "dependsOn": [],
             "sku": {
