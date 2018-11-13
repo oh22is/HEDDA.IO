@@ -5,9 +5,6 @@
         "siteName": {
             "type": "string"
         },
-        "location":{
-            "type": "string"
-        },
         "serverName": {
             "type": "string"
         },
@@ -67,7 +64,7 @@
             }
         },
         "heddaIoApiKey": {
-            "type": "securestring",
+            "type": "string",
             "defaultValue": "12345abcd54321",
             "metadata": {
               "description": "HEDDA.IO ApiKey"
