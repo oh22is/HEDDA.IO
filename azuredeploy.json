@@ -115,11 +115,13 @@
         },
         {
             "type": "Microsoft.Web/serverfarms",
-            "sku":"[parameters('sku')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
             "kind": "app",
             "name": "[parameters('siteName')]",
             "apiVersion": "2016-09-01",
-            "location": "West US 2",
+            "location": "[parameters('location')]",
             "properties": {
                 "name": "[parameters('siteName')]",
                 "perSiteScaling": false,
