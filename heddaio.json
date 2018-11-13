@@ -1,0 +1,192 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "siteName": {
+            "type": "string"
+        },
+        "location":{
+            "type": "string"
+        },
+        "serverName": {
+            "type": "string"
+        },
+        "databaseName": {
+            "type": "string"
+        },
+        "sqlUsername": {
+            "type": "string"
+        },
+        "sqlPassword": {
+            "type": "securestring",
+            "metadata": {
+              "description": "Database admin user password"
+            }
+        },
+        "webUsername": {
+            "type": "string"
+        },
+        "webPassword": {
+            "type": "securestring",
+            "metadata": {
+              "description": "Web admin user password"
+            }
+        },
+        "sku":{
+            "type": "string",
+            "allowedValues": [
+                "Free",
+                "Shared",
+                "Basic",
+                "Standard"
+              ],
+        "defaultValue": "Free"
+        },
+        "dbEdition": {
+            "type": "string",
+            "allowedValues": [
+              "Basic",
+              "Standard",
+              "Premium"
+            ],
+            "defaultValue": "Standard",
+            "metadata": {
+              "description": "SQL DB appServiceTier : Basic,Standard,Premium"
+            }
+        },
+        "heddaIoLicenseId": {
+            "type": "securestring",
+            "metadata": {
+              "description": "HEDDA.IO License ID"
+            }
+        },
+        "heddaIoPassword": {
+            "type": "securestring",
+            "metadata": {
+              "description": "HEDDA.IO Password"
+            }
+        },
+        "heddaIoApiKey": {
+            "type": "securestring",
+            "defaultValue": "12345abcd54321",
+            "metadata": {
+              "description": "HEDDA.IO ApiKey"
+            }
+        }
+
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/bf1804af-b2ab-4bbf-89c1-367e661ca860/resourceGroups/max45245/providers/Microsoft.Sql/servers/max45245'.",
+            "type": "Microsoft.Sql/servers",
+            "kind": "v12.0",
+            "name": "[parameters('serverName')]",
+            "apiVersion": "2015-05-01-preview",
+            "location": "[parameters('location')]",
+            "properties": {
+                "administratorLogin": "[parameters('sqlUsername')]",
+                "administratorLoginPassword": "[parameters('sqlPassword')]",
+                "version": "12.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "sku":"[parameters('sku')]",
+            "kind": "app",
+            "name": "[parameters('siteName')]",
+            "apiVersion": "2016-09-01",
+            "location": "West US 2",
+            "properties": {
+                "name": "[parameters('siteName')]",
+                "perSiteScaling": false,
+                "reserved": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('siteName')]",
+            "apiVersion": "2016-08-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('siteName'),'.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('siteName'),'.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]",
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "sku": {
+                "name": "S0",
+                "tier": "Standard"
+            },
+            "kind": "v12.0,user",
+            "name": "[concat(parameters('serverName'), '/', parameters('databaseName'))]",
+            "apiVersion": "2017-03-01-preview",
+            "location": "[parameters('location')]",
+            "properties": {
+                "edition": "[parameters('dbEdition')]",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": 268435456000,
+                "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+                "zoneRedundant": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('siteName'), '/', parameters('config_web_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "[parameters('location')]",
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "index.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "off",
+                "pythonVersion": "Off",
+                "nodeVersion": "Off",
+                "httpLoggingEnabled": true,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": true,
+                "publishingUsername": "[parameters('webUsername')]",
+                "publishingPassword": "[parameters('webPassword')]",
+                "appSettings": {
+                    "HEDDAIO_ApiKey" : "parameters('heddaioApiKey'))]",
+                    "HEDDAIO_LicenseID" : "parameters('heddaioLicenseId'))]",
+                    "HEDDAIO_LicensePassword" : "parameters('heddaioLicensePassword'))]"
+                },
+                "connectionStrings": null,
+                "use32BitWorkerProcess": false,
+                "alwaysOn": true,
+                "managedPipelineMode": "Integrated"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
+            ]
+        }
+    ]
+}
