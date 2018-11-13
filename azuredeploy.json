@@ -115,9 +115,6 @@
         },
         {
             "type": "Microsoft.Web/serverfarms",
-            "sku": {
-                "name": "[parameters('sku')]"
-            },
             "kind": "app",
             "name": "[parameters('siteName')]",
             "apiVersion": "2016-09-01",
@@ -151,7 +148,7 @@
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', parameters('siteName'))]"
