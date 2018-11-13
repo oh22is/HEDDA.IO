@@ -71,7 +71,7 @@
         },
         "location": {
             "type": "string",
-            "defaultValue": "East US 2",
+            "defaultValue": "North Europe",
             "allowedValues": [
                 "Central US",
                 "East US",
@@ -98,7 +98,9 @@
             }
         }
     },
-    "variables": {},
+    "variables": {
+        "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), ';Password=', parameters('sqlPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+    },
     "resources": [
         {
             "type": "Microsoft.Sql/servers",
@@ -176,38 +178,18 @@
             ]
         },
         {
-            "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('siteName'), '/', parameters('siteName'))]",
             "apiVersion": "2016-08-01",
-            "location": "[parameters('location')]",
-            "scale": null,
-            "properties": {
-                "numberOfWorkers": 1,
-                "defaultDocuments": [
-                    "index.html"
-                ],
-                "netFrameworkVersion": "v4.0",
-                "phpVersion": "off",
-                "pythonVersion": "Off",
-                "nodeVersion": "Off",
-                "httpLoggingEnabled": true,
-                "logsDirectorySizeLimit": 35,
-                "detailedErrorLoggingEnabled": true,
-                "publishingUsername": "[parameters('webUsername')]",
-                "publishingPassword": "[parameters('webPassword')]",
-                "appSettings": {
-                    "HEDDAIO_ApiKey" : "parameters('heddaioApiKey'))]",
-                    "HEDDAIO_LicenseID" : "parameters('heddaioLicenseId'))]",
-                    "HEDDAIO_LicensePassword" : "parameters('heddaioLicensePassword'))]"
-                },
-                "connectionStrings": null,
-                "use32BitWorkerProcess": false,
-                "alwaysOn": true,
-                "managedPipelineMode": "Integrated"
-            },
+            "name": "SQLServerConnectionString",
+            "type": "config",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
-            ]
-        }
+              "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+            ],
+            "properties": {
+              "defaultConnection": {
+                "value": "[variables('connectionString')]",
+                "type": "SqlAzure"
+              }
+            }
+  },
     ]
 }
