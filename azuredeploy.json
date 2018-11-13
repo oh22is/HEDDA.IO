@@ -99,7 +99,7 @@
         }
     },
     "variables": {
-        "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), ';Password=', parameters('sqlPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+        "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), '';Password=', ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
     },
     "resources": [
         {
@@ -176,20 +176,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
             ]
-        },
-        {
-            "apiVersion": "2016-08-01",
-            "name": "SQLServerConnectionString",
-            "type": "config",
-            "dependsOn": [
-              "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
-            ],
-            "properties": {
-              "defaultConnection": {
-                "value": "[variables('connectionString')]",
-                "type": "SqlAzure"
-              }
-            }
-  },
+        }
     ]
 }
