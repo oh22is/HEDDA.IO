@@ -68,34 +68,6 @@
             "metadata": {
               "description": "HEDDA.IO ApiKey"
             }
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "North Europe",
-            "allowedValues": [
-                "Central US",
-                "East US",
-                "East US 2",
-                "North Central US",
-                "South Central US",
-                "West US",
-                "Canada Central",
-                "North Europe",
-                "West Europe",
-                "East Asia",
-                "Southeast Asia",
-                "Japan East",
-                "Japan West",
-                "Brazil South",
-                "Australia East",
-                "Australia Southeast",
-                "West India",
-                "Central India",
-                "South India"
-            ],
-            "metadata": {
-                "description": "Location for all resources."
-            }
         }
     },
     "variables": {
@@ -109,7 +81,7 @@
             "kind": "v12.0",
             "name": "[parameters('serverName')]",
             "apiVersion": "2015-05-01-preview",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "administratorLogin": "[parameters('sqlUsername')]",
                 "administratorLoginPassword": "[parameters('sqlPassword')]",
@@ -122,7 +94,7 @@
             "type": "Microsoft.Web/serverfarms",
             "kind": "app",
             "name": "[variables('appServicePlanName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "comments": "This app service plan is used for the web app and slots.",
             "properties": {
                 "publicIPAllocationMethod":"Dynamic"
@@ -137,7 +109,7 @@
             "kind": "app",
             "name": "[parameters('siteName')]",
             "apiVersion": "2016-08-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
@@ -193,7 +165,7 @@
             "type": "Microsoft.Web/sites/config",
             "name": "[concat(parameters('siteName'), '/', variables('config_web_name'))]",
             "apiVersion": "2016-08-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "numberOfWorkers": 1,
