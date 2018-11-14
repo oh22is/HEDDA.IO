@@ -8,7 +8,7 @@ With this Azure Resource Manager Template you can publish HEDDA.IO directly from
 During the installation an API key is generated which you have to use to access HEDDA.IO. You can look at the API Key in the Application Settings of the App Service in the Applicaton Settings area and change it here if you wish.
 
 
-After successful deployment, you must initialize the HEDDA.IO once.
+After successful deployment, you must initialize HEDDA.IO once.
 
 Open the URL 
 
