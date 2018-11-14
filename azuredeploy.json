@@ -162,7 +162,7 @@
               "heddaIoLicenseId": "[parameters('heddaIoLicenseId')]",
               "heddaIoPassword": "[parameters('heddaIoPassword')]",
               "heddaIoApiKey": "[variables('heddaIoApiKey')]",
-              "WEBSITE_RUN_FROM_ZIP": "https://oh22issoftware.blob.core.windows.net/heddaio/deployment/heddaio.zip?st=2018-11-14T09%3A24%3A28Z&se=2019-02-28T09%3A24%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=k4D1nOruMtVbD28%2B%2FOq1SpjHYJ47biG2cUegMGZK%2B0g%3D"
+              "WEBSITE_RUN_FROM_PACKAGE": "https://oh22issoftware.blob.core.windows.net/heddaio/deployment/heddaio.zip?st=2018-11-14T09%3A24%3A28Z&se=2019-02-28T09%3A24%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=k4D1nOruMtVbD28%2B%2FOq1SpjHYJ47biG2cUegMGZK%2B0g%3D"
             }
           }
         ]
