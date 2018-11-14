@@ -3,30 +3,33 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "siteName": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name for your new HEDDA.IO Web"
+      }
     },
     "serverName": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Azure SQL Server on which the HEDDA.IO database is running"
+      }
     },
     "databaseName": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of the HEDDA.IO database"
+      }
     },
     "sqlUsername": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The user name with which the application logs on to the database"
+      }
     },
     "sqlPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "Database admin user password"
-      }
-    },
-    "webUsername": {
-      "type": "string"
-    },
-    "webPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Web admin user password"
+        "description": "The Password for accessing the HEDDA.IO database. Please use a complex password consisting of upper/lower case letters, numbers and special characters. If the Password is not sufficiently complex, the application deployment will fail."
       }
     },
     "sku": {
@@ -203,8 +206,6 @@
           "httpLoggingEnabled": false,
           "logsDirectorySizeLimit": 35,
           "detailedErrorLoggingEnabled": false,
-          "publishingUsername": "[parameters('webUsername')]",
-          "publishingPassword": "[parameters('webPassword')]",
           "azureStorageAccounts": {},
           "metadata": null,
           "machineKey": null,
@@ -276,9 +277,9 @@
           "managedServiceIdentityId": null,
           "xManagedServiceIdentityId": null,
           "ipSecurityRestrictions": null,
-          "http20Enabled": false,
+          "http20Enabled": true,
           "minTlsVersion": "1.2",
-          "ftpsState": "AllAllowed",
+          "ftpsState": "Disabled",
           "reservedInstanceCount": 0
         },
         "dependsOn": [
