@@ -197,7 +197,7 @@
         "properties": {
           "numberOfWorkers": 1,
           "defaultDocuments": [
-            "default.aspx"
+            "hostingstart.html"
           ],
           "netFrameworkVersion": "v4.7",
           "phpVersion": "",
@@ -208,9 +208,9 @@
           "requestTracingEnabled": false,
           "remoteDebuggingEnabled": false,
           "remoteDebuggingVersion": "VS2017",
-          "httpLoggingEnabled": false,
+          "httpLoggingEnabled": true,
           "logsDirectorySizeLimit": 35,
-          "detailedErrorLoggingEnabled": false,
+          "detailedErrorLoggingEnabled": true,
           "azureStorageAccounts": {},
           "metadata": null,
           "machineKey": null,
