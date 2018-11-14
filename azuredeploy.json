@@ -1,75 +1,75 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-      "siteName": {
-        "type": "string"
-      },
-      "serverName": {
-        "type": "string"
-      },
-      "databaseName": {
-        "type": "string"
-      },
-      "sqlUsername": {
-        "type": "string"
-      },
-      "sqlPassword": {
-        "type": "securestring",
-        "metadata": {
-          "description": "Database admin user password"
-        }
-      },
-      "webUsername": {
-        "type": "string"
-      },
-      "webPassword": {
-        "type": "securestring",
-        "metadata": {
-          "description": "Web admin user password"
-        }
-      },
-      "sku": {
-        "type": "string",
-        "defaultValue": "S1",
-        "metadata": {
-          "description": "The SKU of App Service Plan, by defaut is standard S1"
-        }
-      },
-      "dbEdition": {
-        "type": "string",
-        "allowedValues": [
-          "Basic",
-          "Standard",
-          "Premium"
-        ],
-        "defaultValue": "Standard",
-        "metadata": {
-          "description": "SQL DB appServiceTier : Basic,Standard,Premium"
-        }
-      },
-      "heddaIoLicenseId": {
-        "type": "securestring",
-        "defaultValue": "",
-        "metadata": {
-          "description": "HEDDA.IO License ID"
-        }
-      },
-      "heddaIoPassword": {
-        "type": "securestring",
-        "defaultValue": "",
-        "metadata": {
-          "description": "HEDDA.IO Password"
-        }
-      },
-      "heddaIoApiKey": {
-        "type": "string",
-        "defaultValue": "12345abcd54321",
-        "metadata": {
-          "description": "HEDDA.IO ApiKey"
-        }
+  "parameters": {
+    "siteName": {
+      "type": "string"
+    },
+    "serverName": {
+      "type": "string"
+    },
+    "databaseName": {
+      "type": "string"
+    },
+    "sqlUsername": {
+      "type": "string"
+    },
+    "sqlPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Database admin user password"
       }
     },
+    "webUsername": {
+      "type": "string"
+    },
+    "webPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Web admin user password"
+      }
+    },
+    "sku": {
+      "type": "string",
+      "defaultValue": "S1",
+      "metadata": {
+        "description": "The SKU of App Service Plan, by defaut is standard S1"
+      }
+    },
+    "dbEdition": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "defaultValue": "Standard",
+      "metadata": {
+        "description": "SQL DB appServiceTier : Basic,Standard,Premium"
+      }
+    },
+    "heddaIoLicenseId": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "HEDDA.IO License ID"
+      }
+    },
+    "heddaIoPassword": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "HEDDA.IO Password"
+      }
+    },
+    "heddaIoApiKey": {
+      "type": "string",
+      "defaultValue": "12345abcd54321",
+      "metadata": {
+        "description": "HEDDA.IO ApiKey"
+      }
+    }
+  },
     "variables": {
       "connectionString": "[concat('Server=tcp:', parameters('databaseName'), '.database.windows.net,1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User ID=', parameters('sqlUsername'), ';Password=', parameters('sqlPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
       "appServicePlanName": "[concat('AppServicePlan-', parameters('siteName'))]",
@@ -153,7 +153,8 @@
             "properties": {
               "heddaIoLicenseId": "[parameters('heddaIoLicenseId')]",
               "heddaIoPassword": "[parameters('heddaIoPassword')]",
-              "heddaIoApiKey": "[parameters('heddaIoApiKey')]"
+              "heddaIoApiKey": "[parameters('heddaIoApiKey')]",
+              "WEBSITE_RUN_FROM_ZIP": "https://oh22issoftware.blob.core.windows.net/heddaio/deployment/heddaio.zip?st=2018-11-14T09%3A24%3A28Z&se=2019-02-28T09%3A24%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=k4D1nOruMtVbD28%2B%2FOq1SpjHYJ47biG2cUegMGZK%2B0g%3D"
             }
           }
         ]
