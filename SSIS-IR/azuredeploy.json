@@ -139,11 +139,7 @@
                 "nodeSize": "[parameters('nodeSize')]",
                 "numberOfNodes": "[parameters('nodeNumber')]",
                 "maxParallelExecutionsPerNode": "[parameters('maximumParallelExecutionsPerNode')]",
-                "customSetupContainerSasUri": "[parameters('customSetupContainerSasUri')]",
-                "vNetProperties": {
-                  "vNetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-                  "subnet": "[parameters('subNetName')]"
-                }
+                "customSetupContainerSasUri": "[parameters('customSetupContainerSasUri')]"
               },
               "ssisProperties": {
                 "catalogInfo": {
