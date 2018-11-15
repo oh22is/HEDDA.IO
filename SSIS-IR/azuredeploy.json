@@ -26,18 +26,6 @@
         "description": "Name of the Azure SSIS integration runtime"
       }
     },
-    "virtualNetworkName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of your Azure virtual network."
-      }
-    },
-    "subNetName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the subnet in the virtual network."
-      }
-    },
     "nodeSize": {
       "type": "string",
       "allowedValues": [
@@ -75,8 +63,7 @@
       "type": "int",
       "metadata": {
         "description": "Maximim number of parallel executions per node in the cluster."
-      },
-      "defaultValue": "1"
+      }
     },
     "customSetupContainerSasUri": {
       "type": "string",
