@@ -47,7 +47,7 @@
         "description": "Number of nodes in the cluster."
       }
     },
-    "maximumParallelExecutionsPerNode": {
+    "maxParallelExecutionsPerNode": {
       "type": "int",
       "metadata": {
         "description": "Maximim number of parallel executions per node in the cluster."
@@ -127,7 +127,7 @@
                 "location": "[parameters('dataFactoryLocation')]",
                 "nodeSize": "[parameters('nodeSize')]",
                 "numberOfNodes": "[parameters('nodeNumber')]",
-                "maxParallelExecutionsPerNode": "[parameters('maximumParallelExecutionsPerNode')]",
+                "maxParallelExecutionsPerNode": "[parameters('maxParallelExecutionsPerNode')]",
                 "customSetupContainerSasUri": "[parameters('customSetupContainerSasUri')]"
               },
               "ssisProperties": {
