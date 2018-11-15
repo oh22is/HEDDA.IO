@@ -134,8 +134,7 @@
                 "catalogInfo": {
                   "catalogServerEndpoint": "concat([parameters('azureSqlServerName')], '.database.windows.net')",
                   "catalogAdminUserName": "[parameters('databaseAdminUserName')]",
-                  "catalogAdminPassword": "[parameters('databaseAdminPassword')]"
-                  },
+                  "catalogAdminPassword": "[parameters('databaseAdminPassword')]",
                   "catalogPricingTier": "[parameters('catalogPricingTier')]"
                 }
               }
