@@ -21,10 +21,11 @@ and follow the instructions.
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FApplication%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png" /> 
 </a>
-
-
-
+<br />&nbsp;
+<br />&nbsp;
 ## Azure Data Factory SSIS-IR Deployment Template
+
+In order to validate, standardize, cleanse and/or enrich data using the HEDDA.IO service, the Azure SSIS-IR is best used.
 
 The Azure Resource Manager (ARM) Template for Azure Datafctory SSIS-IR provides an own resource group together with an Azure SQL Server and an Azure Data Factory. For the Azure Data Factory an SSIS Integration Runtime and the corresponding SSISDB will be created.
 
