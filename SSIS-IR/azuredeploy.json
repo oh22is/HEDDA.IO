@@ -69,15 +69,13 @@
         8,
         9,
         10
-      ],
-      "defaultValue": 1
+      ]
     },
     "maximumParallelExecutionsPerNode": {
       "type": "int",
       "metadata": {
         "description": "Maximim number of parallel executions per node in the cluster."
-      },
-      "defaultValue": 1
+      }
     },
     "customSetupContainerSASUri": {
       "type": "string",
