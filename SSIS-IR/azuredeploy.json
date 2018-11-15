@@ -81,7 +81,8 @@
       "type": "string",
       "metadata": {
         "description": "Custom Setup Container SAS URI"
-      }
+      },
+    "defaultValue": "https://oh22issoftware.blob.core.windows.net/heddaiossis?st=2018-11-15T07%3A44%3A50Z&se=2019-02-28T22%3A59%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=B83Z2p4gSCYP2Ajf8Yiu1gVGgpVJJS%2By8L8fuwpCkQU%3D"
     },
     "azureSqlServerName": {
       "type": "string",
