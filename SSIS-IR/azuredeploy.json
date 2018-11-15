@@ -107,6 +107,19 @@
       "dependsOn": []
     },
     {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "name": "[concat(parameters('azureSqlServerName'), '/', 'firewallRules_AllowAllWindowsAzureIps')]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('azureSqlServerName'))]"
+            ]
+    },
+    {
       "name": "[parameters('dataFactoryName')]",
       "apiVersion": "2017-09-01-preview",
       "type": "Microsoft.DataFactory/factories",
