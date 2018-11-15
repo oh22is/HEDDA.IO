@@ -2,7 +2,9 @@
 # HEDDA.IO
 
 <img src="https://hedda.io/wp-content/uploads/2018/09/Hedda.io_primarylogo_orange-300x205.png" align="left" width="150"> oh22’s HEDDA.IO is a knowledge-driven data quality product completely built in Microsoft Azure. HEDDA.IO enables you to build a knowledge base and use it to perform a variety of critical data quality tasks, including correction, enrichment and standardization of your data. HEDDA.IO enables you to perform data cleansing by using cloud-based reference data services provided by reference data providers or developed and provided by yourself.
-
+<br />
+<br />
+<br />
 
 ## Web App & SQL Deployment Template
 
@@ -27,9 +29,9 @@ and follow the instructions.
 
 ## Azure Data Factory SSIS-IR Deployment Template
 
-In order to validate, standardize, cleanse and/or enrich data using the HEDDA.IO service, the Azure SSIS-IR is best used.
+In order to validate, standardize, cleanse and/or enrich data using the HEDDA.IO service, the Azure SSIS-IR is best to used.
 
-The Azure Resource Manager (ARM) Template for Azure Datafctory SSIS-IR provides an own resource group together with an Azure SQL Server and an Azure Data Factory. For the Azure Data Factory an SSIS Integration Runtime and the corresponding SSISDB will be created.
+The Azure Resource Manager (ARM) Template for Azure Datafctory SSIS-IR provides an own resource group together with an Azure SQL Server and an Azure Data Factory. For the Azure Data Factory an SSIS Integration Runtime as well as the corresponding SSISDB will be created.
 
 The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS-IR nodes. So you can deploy your SSIS packages directly against the SSIS-IR and standardize, clean and enrich your data in the cloud.
 
