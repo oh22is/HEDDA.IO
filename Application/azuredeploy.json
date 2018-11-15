@@ -98,6 +98,19 @@
         "dependsOn": []
       },
       {
+        "apiVersion": "2015-05-01-preview",
+        "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+        ],
+        "location": "[resourceGroup().location]",
+        "name": "AllowAllWindowsAzureIps",
+        "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+        },
+        "type": "firewallrules"
+       },
+      {
         "apiVersion": "2017-08-01",
         "type": "Microsoft.Web/serverfarms",
         "kind": "app",
