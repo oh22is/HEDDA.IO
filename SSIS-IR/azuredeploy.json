@@ -59,16 +59,16 @@
         "description": "Number of nodes in the cluster."
       },
       "allowedValues": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10"
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
       ]
     },
     "maximumParallelExecutionsPerNode": {
@@ -78,7 +78,7 @@
       },
       "defaultValue": "1"
     },
-    "customSetupContainerSasUri": {
+    "customSetupContainerSASUri": {
       "type": "string",
       "metadata": {
         "description": "Custom Setup Container SAS URI"
@@ -139,7 +139,7 @@
                 "nodeSize": "[parameters('nodeSize')]",
                 "numberOfNodes": "[parameters('nodeNumber')]",
                 "maxParallelExecutionsPerNode": "[parameters('maximumParallelExecutionsPerNode')]",
-                "customSetupContainerSasUri" :  "[parameters('customSetupContainerSasUri')]",
+                "customSetupContainerSasUri" :  "[parameters('customSetupContainerSASUri')]",
                 "vNetProperties": {
                   "vNetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
                   "subnet": "[parameters('subNetName')]"
