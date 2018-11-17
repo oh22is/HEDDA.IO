@@ -20,9 +20,7 @@ Open the URL
 
 and follow the instructions.
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FApplication%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png" /> 
-</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FApplication%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
 <br />
 <br />
 <br />
@@ -35,6 +33,15 @@ The Azure Resource Manager (ARM) Template for Azure Datafctory SSIS-IR provides 
 
 The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS-IR nodes. So you can deploy your SSIS packages directly against the SSIS-IR and standardize, clean and enrich your data in the cloud.
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FSSIS-IR%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png" /> 
-</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FSSIS-IR%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
+<br />
+<br />
+<br />
+
+## HEDDA.IO Reference Data Services
+
+
+
+| Reference Data Service        |            |
+| ------------- |:-------------:|
+| Azure Maps      |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FSSIS-IR%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>|
