@@ -20,21 +20,20 @@
     },
     "catalogAdminPassword": {
       "type": "securestring"
-    },
-    "sasToken": {
-      "type": "string",
-      "defaultValue": "?st=2018-11-01T00%3A00%3A00Z&se=2020-11-30T00%3A00%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=AoThOzN1ZLAXVodFSIOO9F%2FarX%2BX0E3UEiUQFLek35s%3D"
     }
   },
   "variables": {
-    "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]",
+    "blobUrl": "https://oh22issoftware.blob.core.windows.net/heddaiossis",
+    "sasToken": "?st=2018-11-01T00%3A00%3A00Z&se=2020-11-30T00%3A00%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=AoThOzN1ZLAXVodFSIOO9F%2FarX%2BX0E3UEiUQFLek35s%3D",
+    "apiVersion": "2018-06-01-preview"
   },
   "resources": [
     {
       "type": "Microsoft.Sql/servers",
       "kind": "v12.0",
       "name": "[parameters('serverName')]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "[variables('apiVersion')",
       "location": "[resourceGroup().location]",
       "scale": null,
       "properties": {
@@ -46,7 +45,7 @@
     {
       "type": "Microsoft.Sql/servers/firewallRules",
       "name": "[concat(parameters('serverName'), '/', 'firewallRules_AllowAllWindowsAzureIps_name')]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "2018-06-01-preview",
       "scale": null,
       "properties": {
         "startIpAddress": "0.0.0.0",
@@ -58,7 +57,7 @@
     },
     {
       "name": "[parameters('factoryName')]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "2018-06-01-preview",
       "type": "Microsoft.DataFactory/factories",
       "location": "[resourceGroup().location]",
       "properties": {},
@@ -70,7 +69,7 @@
       "type": "Microsoft.DataFactory/factories/integrationRuntimes",
       "name": "[concat(parameters('factoryName'), '/integrationRuntime')]",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "2018-06-01-preview",
       "properties": {
         "type": "Managed",
         "typeProperties": {
@@ -91,10 +90,10 @@
               "catalogPricingTier": "Basic"
             },
             "customSetupScriptProperties": {
-              "blobContainerUri": "https://oh22issoftware.blob.core.windows.net/heddaiossis",
+              "blobContainerUri": "[variables('blobUrl')]",
               "sasToken": {
-                "type": "SecureString",
-                "value": "[parameters('sasToken')]"
+                "type": "string",
+                "value": "[variables('sasToken')]"
               }
             },
             "edition": "Standard",
