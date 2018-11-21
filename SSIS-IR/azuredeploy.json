@@ -33,7 +33,8 @@
       "location": "[resourceGroup().location]",
       "scale": null,
       "properties": {
-        "administratorLogin": "heddaio",
+        "administratorLogin": "[parameters('catalogAdminUserName')]",
+        "administratorLoginPassword": "[parameters('catalogAdminPassword')]",
         "version": "12.0"
       },
       "dependsOn": []
