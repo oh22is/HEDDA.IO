@@ -51,50 +51,44 @@
     },
     {
       "name": "[parameters('factoryName')]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "2017-09-01-preview",
       "type": "Microsoft.DataFactory/factories",
       "location": "[resourceGroup().location]",
-      "properties": {},
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
       ]
-    },
-    {
-      "type": "Microsoft.DataFactory/factories/integrationRuntimes",
-      "name": "[concat(parameters('factoryName'), '/integrationRuntime')]",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2018-06-01",
-      "properties": {
-        "type": "Managed",
-        "typeProperties": {
-          "computeProperties": {
-            "location": "[resourceGroup().location]",
-            "nodeSize": "Standard_D4_v2",
-            "numberOfNodes": 1,
-            "maxParallelExecutionsPerNode": 1
-          },
-          "ssisProperties": {
-            "catalogInfo": {
-              "catalogServerEndpoint": "[variables('catalogServerEndpoint')]",
-              "catalogAdminUserName": "[parameters('catalogAdminUserName')]",
-              "catalogAdminPassword": "[parameters('catalogAdminPassword')]",
-              "catalogPricingTier": "Basic"
-            },
-            "customSetupScriptProperties": {
-              "blobContainerUri": "[variables('blobUrl')]",
-              "sasToken": {
-                "type": "string",
-                "value": "[variables('sasToken')]"
+      "properties": {},
+      "resources": [
+        {
+          "name": "[concat(parameters('factoryName'), '/AzureSsisIR')]",
+          "type": "Microsoft.DataFactory/factories/integrationRuntimes",
+          "dependsOn": [
+            "[parameters('factoryName')]"
+          ],
+          "apiVersion": "2017-09-01-preview",
+          "properties": {
+            "type": "Managed",
+            "typeProperties": {
+              "computeProperties": {
+                "location": "[resourceGroup().location]",
+                "nodeSize": "Standard_D4_v2",
+                "numberOfNodes": 1,
+                "maxParallelExecutionsPerNode": 1
+              },
+              "ssisProperties": {
+                "catalogInfo": {
+                  "catalogServerEndpoint": "[parameters('serverName')]",
+                  "catalogAdminUserName": "[parameters('catalogAdminUserName')]",
+                  "catalogAdminPassword": {
+                    "type": "SecureString",
+                    "value": "[parameters('catalogAdminPassword')]"
+                  },
+                  "catalogPricingTier": "Basic"
+                }
               }
-            },
-            "edition": "Standard",
-            "licenseType": "LicenseIncluded"
+            }
           }
         }
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]",
-        "[resourceId('Microsoft.DataFactory/factories', parameters('factoryName'))]"
       ]
     }
   ]
