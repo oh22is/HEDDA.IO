@@ -3,7 +3,6 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "serverName": {
-      "defaultValue": "heddassis",
       "type": "string"
     },
     "factoryName": {
@@ -32,7 +31,10 @@
       "scale": null,
       "properties": {
         "administratorLogin": "[parameters('catalogAdminUserName')]",
-        "administratorLoginPassword": "[parameters('catalogAdminPassword')]",
+        "administratorLoginPassword": {
+          "type": "SecureString",
+          "value": "[parameters('catalogAdminPassword')]"
+        },
         "version": "12.0"
       },
       "dependsOn": []
@@ -64,7 +66,7 @@
       "type": "Microsoft.DataFactory/factories/integrationRuntimes",
       "name": "[concat(parameters('factoryName'), '/integrationRuntime')]",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2018-07-01-preview",
+      "apiVersion": "2018-06-01",
       "properties": {
         "type": "Managed",
         "typeProperties": {
