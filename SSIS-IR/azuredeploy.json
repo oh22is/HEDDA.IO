@@ -1,162 +1,110 @@
 {
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "parameters": {
-    "dataFactoryName": {
+    "serverName": {
+      "defaultValue": "heddassis",
+      "type": "string"
+    },
+    "factoryName": {
       "type": "string",
-      "metadata": {
-        "description": "Name of the data factory. Must be globally unique."
-      }
+      "defaultValue": "heddaioadf"
     },
-    "dataFactoryLocation": {
+    "catalogServerEndpoint": {
       "type": "string",
-      "allowedValues": [
-        "East US",
-        "East US 2",
-        "West Europe"
-      ],
-      "metadata": {
-        "description": "Location of the data factory."
-      },
-      "defaultValue": "East US 2"
+      "defaultValue": "heddassis.database.windows.net"
     },
-    "azureSsisIrName": {
+    "catalogAdminUserName": {
       "type": "string",
-      "metadata": {
-        "description": "Name of the Azure SSIS integration runtime"
-      }
+      "defaultValue": "heddaio"
     },
-    "nodeSize": {
+    "catalogAdminPassword": {
+      "type": "securestring"
+    },
+    "sasToken": {
       "type": "string",
-      "allowedValues": [
-        "Standard_A4_v2",
-        "Standard_A8_v2",
-        "Standard_D1_v2",
-        "Standard_D2_v2",
-        "Standard_D3_v2",
-        "Standard_D4_v2"
-      ],
-      "metadata": {
-        "description": "Location of the data factory."
-      },
-      "defaultValue": "Standard_D1_v2"
-    },
-    "nodeNumber": {
-      "type": "int",
-      "metadata": {
-        "description": "Number of nodes in the cluster."
-      }
-    },
-    "maxParallelExecutionsPerNode": {
-      "type": "int",
-      "metadata": {
-        "description": "Maximim number of parallel executions per node in the cluster."
-      }
-    },
-    "customSetupContainerSasUri": {
-      "type": "string",
-      "metadata": {
-        "description": "Custom Setup Container SAS URI"
-      },
-      "defaultValue": "https://oh22issoftware.blob.core.windows.net/heddaiossis?st=2018-11-15T07%3A44%3A50Z&se=2019-02-28T22%3A59%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=B83Z2p4gSCYP2Ajf8Yiu1gVGgpVJJS%2By8L8fuwpCkQU%3D"
-    },
-    "azureSqlServerName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Azure SQL server that hosts the SSISDB database (SSIS Catalog)."
-      }
-    },
-    "databaseAdminUsername": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Azure SQL database user."
-      }
-    },
-    "databaseAdminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Password for the database user."
-      }
-    },
-    "catalogPricingTier": {
-      "type": "string",
-      "metadata": {
-        "description": "Pricing tier of the SSIS Catalog (SSISDB datbase)"
-      },
-      "allowedValues": [
-        "Basic",
-        "Standard",
-        "Premium"
-      ],
-      "defaultValue": "Standard"
+      "defaultValue": "?st=2018-11-01T00%3A00%3A00Z&se=2020-11-30T00%3A00%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=AoThOzN1ZLAXVodFSIOO9F%2FarX%2BX0E3UEiUQFLek35s%3D"
     }
   },
-  "variables": {},
+  "variables": {
+    "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+  },
   "resources": [
     {
       "type": "Microsoft.Sql/servers",
       "kind": "v12.0",
-      "name": "[parameters('azureSqlServerName')]",
-      "apiVersion": "2015-05-01-preview",
-      "location": "[parameters('dataFactoryLocation')]",
+      "name": "[parameters('serverName')]",
+      "apiVersion": "2018-06-01",
+      "location": "[resourceGroup().location]",
+      "scale": null,
       "properties": {
-        "administratorLogin": "[parameters('databaseAdminUsername')]",
-        "administratorLoginPassword": "[parameters('databaseAdminPassword')]",
+        "administratorLogin": "heddaio",
         "version": "12.0"
       },
       "dependsOn": []
     },
     {
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "name": "[concat(parameters('azureSqlServerName'), '/', 'firewallRules_AllowAllWindowsAzureIps')]",
-            "apiVersion": "2015-05-01-preview",
-            "scale": null,
-            "properties": {
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('azureSqlServerName'))]"
-            ]
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "name": "[concat(parameters('serverName'), '/', 'firewallRules_AllowAllWindowsAzureIps_name')]",
+      "apiVersion": "2018-06-01",
+      "scale": null,
+      "properties": {
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "0.0.0.0"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
+      ]
     },
     {
-      "name": "[parameters('dataFactoryName')]",
-      "apiVersion": "2017-09-01-preview",
+      "name": "[parameters('factoryName')]",
+      "apiVersion": "2018-06-01",
       "type": "Microsoft.DataFactory/factories",
-      "location": "[parameters('dataFactoryLocation')]",
+      "location": "[resourceGroup().location]",
       "properties": {},
-      "resources": [
-        {
-          "name": "[concat(parameters('dataFactoryName'), '/SPAzureSsisIR')]",
-          "type": "Microsoft.DataFactory/factories/integrationRuntimes",
-          "dependsOn": [
-            "[parameters('dataFactoryName')]"
-          ],
-          "apiVersion": "2017-09-01-preview",
-          "properties": {
-            "type": "Managed",
-            "typeProperties": {
-              "computeProperties": {
-                "location": "[parameters('dataFactoryLocation')]",
-                "nodeSize": "[parameters('nodeSize')]",
-                "numberOfNodes": "[parameters('nodeNumber')]",
-                "maxParallelExecutionsPerNode": "[parameters('maxParallelExecutionsPerNode')]",
-                "customSetupContainerSasUri": "[parameters('customSetupContainerSasUri')]"
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.DataFactory/factories/integrationRuntimes",
+      "name": "[concat(parameters('factoryName'), '/integrationRuntime')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "type": "Managed",
+        "typeProperties": {
+          "computeProperties": {
+            "location": "[resourceGroup().location]",
+            "nodeSize": "Standard_D4_v2",
+            "numberOfNodes": 1,
+            "maxParallelExecutionsPerNode": 1
+          },
+          "ssisProperties": {
+            "catalogInfo": {
+              "catalogServerEndpoint": "[parameters('catalogServerEndpoint')]",
+              "catalogAdminUserName": "[parameters('catalogAdminUserName')]",
+              "catalogAdminPassword": {
+                "type": "SecureString",
+                "value": "[parameters('catalogAdminPassword')]"
               },
-              "ssisProperties": {
-                "catalogInfo": {
-                  "catalogServerEndpoint": "concat([parameters('azureSqlServerName')], '.database.windows.net')",
-                  "catalogAdminUserName": "[parameters('databaseAdminUserName')]",
-                  "catalogAdminPassword": "[parameters('databaseAdminPassword')]",
-                  "catalogPricingTier": "[parameters('catalogPricingTier')]"
-                }
+              "catalogPricingTier": "Basic"
+            },
+            "customSetupScriptProperties": {
+              "blobContainerUri": "https://oh22issoftware.blob.core.windows.net/heddaiossis",
+              "sasToken": {
+                "type": "SecureString",
+                "value": "[parameters('sasToken')]"
               }
-            }
+            },
+            "edition": "Standard",
+            "licenseType": "LicenseIncluded"
           }
         }
-      ],
+      },
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('azureSqlServerName'))]"
+        "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]",
+        "[resourceId('Microsoft.DataFactory/factories', parameters('factoryName'))]"
       ]
     }
   ]
