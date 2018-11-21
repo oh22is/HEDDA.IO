@@ -50,14 +50,14 @@
       ]
     },
     {
+      "type": "Microsoft.DataFactory/factories",
       "name": "[parameters('factoryName')]",
       "apiVersion": "2017-09-01-preview",
-      "type": "Microsoft.DataFactory/factories",
       "location": "[resourceGroup().location]",
+      "properties": {},
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]"
-      ]
-      "properties": {},
+      ],
       "resources": [
         {
           "name": "[concat(parameters('factoryName'), '/AzureSsisIR')]",
