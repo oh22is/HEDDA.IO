@@ -37,7 +37,7 @@ The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS
 <br />
 <br />
 <br />
--->
+
 ## HEDDA.IO Reference Data Services
 
 
@@ -45,3 +45,4 @@ The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS
 | Reference Data Service        |            |
 | ------------- |:-------------:|
 | Azure Maps      |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FSSIS-IR%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>|
+-->
