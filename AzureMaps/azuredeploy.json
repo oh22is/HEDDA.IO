@@ -2,6 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
   "parameters": {
+    "appServicePlan": {
+      "type": "string",
+      "metadata": {
+        "description": "The name for your new HEDDA.IO Web"
+      }
+    },
     "siteName": {
       "type": "string",
       "metadata": {
@@ -28,7 +34,6 @@
     }
   },
   "variables": {
-    "appServicePlanName": "[concat('AppServicePlan-', parameters('siteName'))]",
     "config_web_name": "web",
   },
     "resources": [
@@ -36,7 +41,7 @@
         "apiVersion": "2017-08-01",
         "type": "Microsoft.Web/serverfarms",
         "kind": "app",
-        "name": "[variables('appServicePlanName')]",
+        "name": "[parameters('appServicePlan')]",
         "location": "[resourceGroup().location]",
         "comments": "This app service plan is used for the web app and slots.",
         "properties": {
@@ -67,11 +72,11 @@
               "hostType": "Repository"
             }
           ],
-          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlan'))]",
           "siteConfig": { }
         },
         "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+          "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlan'))]"
         ],
         "resources": [
           {
