@@ -68,16 +68,7 @@
             }
           ],
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
-          "siteConfig":
-          {
-            "connectionStrings": [
-              {
-                "name": "SQLServerConnectionString",
-                "connectionString": "[variables('connectionString')]",
-                "type": "SQLAzure"
-              }
-            ]
-          }
+          "siteConfig": { }
         },
         "dependsOn": [
           "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
