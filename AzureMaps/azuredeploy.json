@@ -94,7 +94,7 @@
               "displayName": "heddaIo"
             },
             "properties": {
-              "WEBSITE_RUN_FROM_PACKAGE": "https://oh22issoftware.blob.core.windows.net/heddaio/deployment/heddaio.zip"
+              "WEBSITE_RUN_FROM_PACKAGE": "https://oh22issoftware.blob.core.windows.net/heddaio/rds/HeddaIO.AzureMapsRDS.zip"
             }
           }
         ]
