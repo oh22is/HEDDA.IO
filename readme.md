@@ -41,10 +41,9 @@ The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS
 
 ## HEDDA.IO Reference Data Services
 
-
-
-| Reference Data Service        |            |
-| ------------- |:-------------:|
-| Azure Maps<br />The Azure Maps Reference Data Service enables HEDDA.IO to enrich address data with geocoordinates using the Microsoft Azure Maps Service.      |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FAzureMaps%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>|
-| Credit Card Validator      |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FCreditCardValidator%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>|
+### Azure Maps
+The Azure Maps Reference Data Service enables HEDDA.IO to enrich address data with geocoordinates using the Microsoft Azure Maps Service.<br /><br /><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FAzureMaps%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
+<br/><br/>
+### Credit Card Validator
+With the Credit Card Validator Reference Data Service, credit card numbers and the specified credit card institution can be checked and, if necessary, corrected.<br /><br /><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FCreditCardValidator%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
 
