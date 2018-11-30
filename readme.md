@@ -46,4 +46,7 @@ The Azure Maps Reference Data Service enables HEDDA.IO to enrich address data wi
 <br/><br/>
 ### Credit Card Validator
 With the Credit Card Validator Reference Data Service, credit card numbers and the specified credit card institution can be checked and, if necessary, corrected.<br /><br /><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2FCreditCardValidator%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
+<br/><br/>
+### libphonenumber
+Reference Data Service for parsing and validating telephone numbers. Based on libphonenumber - Google's common Java, C++ and JavaScript library for parsing, formatting, and validating international phone numbers.<br /><br /><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foh22is%2FHEDDA.IO%2Fmaster%2Flibphonenumber%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" /></a>
 
