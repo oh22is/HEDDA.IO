@@ -84,10 +84,16 @@
                     "value": "[parameters('catalogAdminPassword')]"
                   },
                   "catalogPricingTier": "Basic"
-                }
+                },
+                "edition": "Standard",
+                "licenseType": "LicenseIncluded"
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]",
+            "[parameters('factoryName')]"
+          ]
         }
       ]
     }
