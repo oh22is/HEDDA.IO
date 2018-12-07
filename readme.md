@@ -24,7 +24,7 @@ and follow the instructions.
 <br />
 <br />
 <br />
-<!--
+
 ## Azure Data Factory SSIS-IR Deployment Template
 
 In order to validate, standardize, cleanse and/or enrich data using the HEDDA.IO service, the Azure SSIS-IR is best to used.
@@ -37,7 +37,6 @@ The HEDDA.IO SSIS Data Cleansing component is pre-installed directly on the SSIS
 <br />
 <br />
 <br />
--->
 
 ## HEDDA.IO Reference Data Services
 
