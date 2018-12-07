@@ -60,36 +60,40 @@
       ],
       "resources": [
         {
-          "name": "[concat(parameters('factoryName'), '/AzureSsisIR')]",
-          "type": "Microsoft.DataFactory/factories/integrationRuntimes",
-          "dependsOn": [
-            "[parameters('factoryName')]"
-          ],
-          "apiVersion": "2017-09-01-preview",
-          "properties": {
-            "type": "Managed",
-            "typeProperties": {
-              "computeProperties": {
-                "location": "[resourceGroup().location]",
-                "nodeSize": "Standard_D4_v2",
-                "numberOfNodes": 1,
-                "maxParallelExecutionsPerNode": 1
-              },
-              "ssisProperties": {
-                "catalogInfo": {
-                  "catalogServerEndpoint": "[parameters('serverName')]",
-                  "catalogAdminUserName": "[parameters('catalogAdminUserName')]",
-                  "catalogAdminPassword": {
-                    "type": "SecureString",
-                    "value": "[parameters('catalogAdminPassword')]"
-                  },
-                  "catalogPricingTier": "Basic"
-                },
-                "edition": "Standard",
-                "licenseType": "LicenseIncluded"
-              }
-            }
-          },
+            "name": "[concat(parameters('factoryName'), '/AzureSsisIR')]",
+            "type": "Microsoft.DataFactory/factories/integrationRuntimes",
+            "apiVersion": "2017-09-01-preview",
+            "properties": {
+                "type": "Managed",
+                "typeProperties": {
+                    "computeProperties": {
+                        "location": "West US",
+                        "nodeSize": "Standard_D4_v3",
+                        "numberOfNodes": 1,
+                        "maxParallelExecutionsPerNode": 1
+                    },
+                    "ssisProperties": {
+                        "catalogInfo": {
+                            "catalogServerEndpoint": "[parameters('serverName')]",
+                            "catalogAdminUserName": "[parameters('catalogAdminUserName')]",
+                            "catalogAdminPassword": {
+                                "type": "SecureString",
+                                "value": "[parameters('catalogAdminPassword')]"
+                            },
+                            "catalogPricingTier": "Basic"
+                        },
+                        "customSetupScriptProperties": {
+                            "blobContainerUri": "https://oh22issoftware.blob.core.windows.net/heddaiossis",
+                            "sasToken": {
+                                "type": "SecureString",
+                                "value": "[variables('sasToken')]"
+                            }
+                        },
+                        "edition": "Standard",
+                        "licenseType": "LicenseIncluded"
+                    }
+                }
+            },
           "dependsOn": [
             "[resourceId('Microsoft.Sql/servers', parameters('serverName'))]",
             "[parameters('factoryName')]"
