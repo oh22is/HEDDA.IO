@@ -208,7 +208,7 @@
         "location": "[resourceGroup().location]",
         "scale": null,
         "properties": {
-          "numberOfWorkers": 1,
+          "numberOfWorkers": 3,
           "defaultDocuments": [
             "hostingstart.html"
           ],
